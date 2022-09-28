@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    var emojis = ["🚓","🍔","🍔","🚓","🎮","🎮"]
+    var emojis = ["🚓","🍔","🎮","🚚"]
     
     @State var emojiCount = 4
     var body: some View {
         VStack{
-            HStack{
+            LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]){
                 ForEach(emojis[0..<emojiCount], id: \.self) { emoji in
                     CardView(content: emoji)
+                        .aspectRatio(5/3, contentMode: .fit)
                 }
             }
             .padding(/*@START_MENU_TOKEN@*/.horizontal/*@END_MENU_TOKEN@*/)
