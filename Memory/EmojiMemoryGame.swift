@@ -9,10 +9,17 @@ import Foundation
 
 class EmojiMemoryGame: ObservableObject{
     
-    static var emojis = ["🚓","🍔","🎮","🚚","🎺","😋","💩","🥷"]
+    private static var emojis = ["🚓","🍔","🎮","🚚","🎺","😋","💩","🥷"]
     
-    @Published var model = MemoryGame<String>(numberOfPairsOfCards: 5) {pairIndex in
+    @Published private var model = MemoryGame<String>(numberOfPairsOfCards: 5) {pairIndex in
         return emojis[pairIndex]
     }
     
+    var cards: [MemoryGame<String>.Card]{
+        return model.cards
+    }
+    
+    func choose(_ card: MemoryGame<String>.Card){
+        model.choose(card: card)
+    }
 }

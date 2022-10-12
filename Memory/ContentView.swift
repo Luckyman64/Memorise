@@ -18,7 +18,7 @@ struct ContentView: View {
                     CardView(card: card)
                         .aspectRatio(5/8, contentMode: .fit)
                         .onTapGesture {
-                            viewModel.model.choose(card: card)
+                            viewModel.choose(card)
                         }
                 }
             }
