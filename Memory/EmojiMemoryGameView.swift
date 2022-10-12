@@ -13,6 +13,7 @@ struct EmojiMemoryGameView: View {
     @State var emojiCount = 4
     var body: some View {
         VStack{
+            text
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]){
                 ForEach(game.cards) { card in
                     CardView(card: card)
@@ -27,34 +28,28 @@ struct EmojiMemoryGameView: View {
             
             Spacer()
             
-//            HStack{
-//                if(emojiCount > 0){
-//                    remove
-//                }
-//
-//                Spacer()
-//
-//                if(emojiCount < emojis.count){
-//                    add
-//                    .padding()
-//                }
-//            }
-//            .padding(.horizontal)
+            HStack(spacing:50){
+                ForEach(Theme.allCases, id:\.self){theme in
+                    Button(
+                        action: {
+                        game.theme = theme
+                    },
+                        label: {
+                            VStack{
+                                Image(systemName: theme.imageName)
+                                    .font(.title)
+                                Text(theme.imageSubTitle)
+                            }
+                    }
+                    )
+                }
+            }
+            .padding(.horizontal)
         }
     }
-    var add: some View{
-        Button {
-            emojiCount += 1
-        } label: {
-            Image(systemName: "plus.circle").font(.largeTitle)
-        }
-    }
-    var remove: some View{
-        Button {
-            emojiCount -= 1
-        } label: {
-            Image(systemName: "minus.circle").font(.largeTitle)
-        }
+    var text: some View{
+        Text("Memorize!")
+            .font(.title)
     }
 }
 

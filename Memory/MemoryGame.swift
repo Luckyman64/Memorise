@@ -18,6 +18,7 @@ struct MemoryGame<CardContent: Equatable> {
             cards.append(Card(id: (pairIndex * 2), content: createCardContent(pairIndex)))
             cards.append(Card(id: (pairIndex * 2) + 1, content: createCardContent(pairIndex)))
         }
+        cards = cards.shuffled()
     }
     
     
@@ -76,5 +77,3 @@ extension Array{
         }
     }
 }
-
-
