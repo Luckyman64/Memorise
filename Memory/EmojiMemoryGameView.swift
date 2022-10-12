@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  EmojiMemoryGameView.swift
 //  Memory
 //
 //  Created by Clement Lantiat on 06/07/1401 AP.
@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    @ObservedObject var viewModel: EmojiMemoryGame
+struct EmojiMemoryGameView: View {
+    @ObservedObject var game: EmojiMemoryGame
     
     @State var emojiCount = 4
     var body: some View {
         VStack{
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]){
-                ForEach(viewModel.cards) { card in
+                ForEach(game.cards) { card in
                     CardView(card: card)
                         .aspectRatio(5/8, contentMode: .fit)
                         .onTapGesture {
-                            viewModel.choose(card)
+                            game.choose(card)
                         }
                 }
             }
@@ -83,9 +83,9 @@ struct CardView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(viewModel: EmojiMemoryGame())
+        EmojiMemoryGameView(game: EmojiMemoryGame())
             .preferredColorScheme(.dark)
-        ContentView(viewModel: EmojiMemoryGame())
+        EmojiMemoryGameView(game: EmojiMemoryGame())
             .preferredColorScheme(.light)
     }
 }
