@@ -14,7 +14,7 @@ struct ContentView: View {
     var body: some View {
         VStack{
             LazyVGrid(columns: [GridItem(.adaptive(minimum: 80))]){
-                ForEach(viewModel.model.cards) { card in
+                ForEach(viewModel.cards) { card in
                     CardView(card: card)
                         .aspectRatio(5/8, contentMode: .fit)
                         .onTapGesture {
@@ -59,7 +59,7 @@ struct ContentView: View {
 }
 
 struct CardView: View {
-    var card: MemoryGame<String>.Card
+    var card: EmojiMemoryGame.Card
     var body: some View{
         ZStack {
             let shape = RoundedRectangle(cornerRadius: 25.0)
@@ -69,6 +69,8 @@ struct CardView: View {
                 
                 Text(card.content)
                     .font(.largeTitle)
+            }else if card.isMatched{
+                shape.opacity(0)
             }
             else{
                 shape.foregroundColor(.gray)
