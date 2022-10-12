@@ -7,11 +7,11 @@
 
 import Foundation
 
-class EmojiMemoryGame{
+class EmojiMemoryGame: ObservableObject{
     
-    static var emojis = ["🚓","🍔","🎮","🚚","🎺"]
+    static var emojis = ["🚓","🍔","🎮","🚚","🎺","😋","💩","🥷"]
     
-    var model = MemoryGame<String>(numberOfPairsOfCards: 5) {pairIndex in
+    @Published var model = MemoryGame<String>(numberOfPairsOfCards: 5) {pairIndex in
         return emojis[pairIndex]
     }
     
